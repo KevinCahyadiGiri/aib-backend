@@ -1,1 +1,1 @@
-web: gunicorn aib:app
+web: gunicorn app:app
