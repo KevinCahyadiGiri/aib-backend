@@ -44,4 +44,4 @@ def json_predict():
     return str(Y_predict[0])
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
