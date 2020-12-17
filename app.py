@@ -6,7 +6,12 @@ from flask_cors import CORS
 # untuk ngeload modelnya
 
 filename = 'logistic_regression_tuned.sav'
-used_model = pickle.load(open(filename, 'rb')) 
+#used_model = pickle.load(open(filename, 'rb')) 
+
+try :
+    used_model = pickle.load(open(filename, 'rb')) 
+except Exception as e:
+     print(e)
 
 app = Flask(__name__)
 CORS(app)
@@ -19,6 +24,11 @@ def json_predict():
     max_Age = 85 
     max_Region_Code = 52.0
     max_Annual_Premium = 61892.5
+    if (int(json_predict['channel_binned']) >= 135):
+        channel_binned = 1
+    else:
+        channel_binned = 0
+    
     X_predict = {'Gender':[int(json_predict["gender"])],
                 'Age':[int(json_predict['age']/max_Age)],
                 'Driving_License':[int(json_predict['driving_license'])],
@@ -26,7 +36,7 @@ def json_predict():
                 'Previously_Insured':[int(json_predict['previously_insured'])],
                 'Vehicle_Damage':[int(json_predict['vehicle_damage'])],
                 'Annual_Premium':[float(json_predict['annual_premium']/max_Annual_Premium)],
-                'channel_binned':[int(json_predict['channel_binned'])],
+                'channel_binned':[channel_binned],
                 'mid':[int(json_predict['mid'])],
                 'new':[int(json_predict['new'])],
                 'old':[int(json_predict['old'])]}
