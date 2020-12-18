@@ -3,6 +3,7 @@ import pickle
 import pandas as pd
 from flask_cors import CORS
 from flask_cors import cross_origin
+import sklearn
 
 # untuk ngeload modelnya
 
@@ -16,7 +17,7 @@ except Exception as e:
 
 app = Flask(__name__)
 CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
+# app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/json_predict', methods=['POST'])
 @cross_origin()
