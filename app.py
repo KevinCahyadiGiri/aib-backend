@@ -17,7 +17,6 @@ except Exception as e:
 
 app = Flask(__name__)
 CORS(app)
-# app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/json_predict', methods=['POST'])
 @cross_origin()
@@ -46,15 +45,10 @@ def json_predict():
                 'old':[int(json_predict['old'])]}
     X_predict = pd.DataFrame(X_predict)
 
-    # ubah jadidataframe
-    # json_predict = pd.DataFrame([json_predict])
-
     # predict
     Y_predict = used_model.predict(X_predict)
 
     print('berhasil')
-
-    # response.headers['Access-Control-Allow-Origin'] = '*'
 
     # ngembaliin nilai 0/1
     return str(Y_predict[0])
