@@ -4,8 +4,6 @@ import pandas as pd
 from flask_cors import CORS
 from flask_cors import cross_origin
 
-request.headers['Access-Control-Allow-Origin'] = '*'
-
 # untuk ngeload modelnya
 
 filename = 'logistic_regression_tuned.sav'
