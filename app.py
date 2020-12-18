@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify 
 import pickle
 import pandas as pd
-# from flask_cors import CORS
+from flask_cors import CORS
 from flask_cors import cross_origin
+
+request.headers['Access-Control-Allow-Origin'] = '*'
 
 # untuk ngeload modelnya
 
@@ -15,7 +17,7 @@ except Exception as e:
      print(e)
 
 app = Flask(__name__)
-# CORS(app)
+CORS(app)
 
 @app.route('/json_predict', methods=['POST'])
 @cross_origin()
@@ -51,6 +53,8 @@ def json_predict():
     Y_predict = used_model.predict(X_predict)
 
     print('berhasil')
+
+    response.headers['Access-Control-Allow-Origin'] = '*'
 
     # ngembaliin nilai 0/1
     return str(Y_predict[0])
