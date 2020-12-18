@@ -54,7 +54,7 @@ def json_predict():
 
     print('berhasil')
 
-    response.headers['Access-Control-Allow-Origin'] = '*'
+    # response.headers['Access-Control-Allow-Origin'] = '*'
 
     # ngembaliin nilai 0/1
     return str(Y_predict[0])
